@@ -1,0 +1,20 @@
+neo4j:
+  name: neo4j
+  fullname: neo4j
+  resources:
+    requests:
+     cpu: "500m"
+     memory: "2Gi"
+    limits:
+     cpu: "2000m"
+     memory: "4Gi"
+
+  password: "pwd"
+# TODO: Add scrapping annotation of Prometheus
+# * https://neo4j.com/docs/operations-manual/5/monitoring/metrics/expose/#_prometheus
+volumes:
+  data:
+    mode: defaultStorageClass
+    defaultStorageClass:
+      requests:
+        storage: 2Gi

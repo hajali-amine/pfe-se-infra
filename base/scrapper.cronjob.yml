@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: scrapper
+spec:
+  schedule: "	0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: scrapper
+            image: aminehajali/pfe-search-engine-scrapper
+            imagePullPolicy: Always
+            env:
+            - name: RABBITMQ_URL
+              value: amqp://guest:guest@rabbitmq.default:5672/
+            - name: NB_PAGES_TO_SCRAP
+              value: "2"

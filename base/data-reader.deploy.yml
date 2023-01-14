@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-reader
+  labels:
+    app: data-reader
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: data-reader
+  template:
+    metadata:
+      labels:
+        app: data-reader
+    spec:
+      containers:
+      - name: data-reader
+        image: aminehajali/pfe-search-engine-datareader
+        imagePullPolicy: Always
+        env:
+        - name: NEO4J_URL
+          value: bolt://neo4j.default.svc.cluster.local:7687
+        - name: NEO4J_USERNAME
+          value: neo4j
+        - name: NEO4J_PASSWORD
+          value: pwd
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: 20m
+            memory: 50Mi
+          limits:
+            cpu: "3"
+            memory: 2Gi

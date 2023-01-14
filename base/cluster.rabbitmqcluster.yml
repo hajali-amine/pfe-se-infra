@@ -1,0 +1,14 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: rabbitmq
+  namespace: default
+  annotations:
+    rabbitmq.com/topology-allowed-namespaces: "*"
+spec:
+  replicas: 1
+  rabbitmq:
+      additionalConfig: |
+        loopback_users = none
+        default_user = guest
+        default_pass = guest

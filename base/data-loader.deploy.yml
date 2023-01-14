@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-loader
+  labels:
+    app: data-loader
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: data-loader
+  template:
+    metadata:
+      labels:
+        app: data-loader
+    spec:
+      containers:
+      - name: data-loader
+        image: aminehajali/pfe-search-engine-dataloader
+        env:
+        - name: NEO4J_URL
+          value: bolt://neo4j.default:7687
+        - name: NEO4J_USERNAME
+          value: neo4j
+        - name: NEO4J_PASSWORD
+          value: pwd
+        - name: RABBITMQ_URL
+          value: amqp://guest:guest@rabbitmq.default:5672/
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: 20m
+            memory: 50Mi
+          limits:
+            cpu: "3"
+            memory: 2Gi
