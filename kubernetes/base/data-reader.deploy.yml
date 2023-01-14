@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: data-reader
+  namespace: prod
   labels:
     app: data-reader
 spec:
@@ -16,8 +17,8 @@ spec:
     spec:
       initContainers:
       - name: wait-for-neo4j
-      image: busybox:1.28
-      command: ['sh', '-c', "until nslookup neo4j.default.svc.cluster.local; do echo 'waiting for neo4j'; sleep 2; done"]
+        image: busybox:1.28
+        command: ['sh', '-c', "until nslookup neo4j; do echo 'waiting for neo4j'; sleep 2; done"]
 
       containers:
       - name: data-reader
@@ -25,7 +26,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: NEO4J_URL
-          value: bolt://neo4j.default.svc.cluster.local:7687
+          value: bolt://neo4j:7687
         - name: NEO4J_USERNAME
           value: neo4j
         - name: NEO4J_PASSWORD

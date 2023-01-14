@@ -12,6 +12,10 @@ provider "kind" {}
 # Create a cluster with kind of the name "test-cluster" with kubernetes version v1.16.1
 resource "kind_cluster" "default" {
     name = "test-cluster"
+
+    provisioner "local-exec" {
+      command = "echo ${self.kubeconfig} >> ~/.kube/config"
+    }
 }
 
 output "config" {
