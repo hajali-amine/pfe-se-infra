@@ -14,6 +14,14 @@ spec:
       labels:
         app: data-loader
     spec:
+      initContainers:
+      - name: wait-for-rabbitmq
+        image: busybox:1.28
+        command: ['sh', '-c', "until nslookup rabbitmq.default.svc.cluster.local; do echo 'waiting for rabbitmq'; sleep 2; done"]
+      - name: wait-for-neo4j
+        image: busybox:1.28
+        command: ['sh', '-c', "until nslookup neo4j.default.svc.cluster.local; do echo 'waiting for neo4j'; sleep 2; done"]
+
       containers:
       - name: data-loader
         image: aminehajali/pfe-search-engine-dataloader
