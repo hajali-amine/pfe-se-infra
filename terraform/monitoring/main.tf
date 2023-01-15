@@ -11,3 +11,11 @@ module "prometheus" {
   }
   namespace = kubernetes_namespace.namespace.id
 }
+
+module "jaeger" {
+  source = "./modules/jaeger"
+  providers = {
+    helm = helm
+  }
+  namespace = kubernetes_namespace.namespace.id
+}

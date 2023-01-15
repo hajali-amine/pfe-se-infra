@@ -9,4 +9,10 @@ terraform {
       version = "~>2.16.0"
     }
   }
+  backend "azurerm" {
+    resource_group_name  = "devops-project"
+    container_name       = "monitoring"
+    storage_account_name = "terraformstatesdevops"
+    key                  = "monitoring.json"
+  }
 }
