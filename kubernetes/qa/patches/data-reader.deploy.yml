@@ -10,14 +10,14 @@ spec:
       initContainers:
       - name: wait-for-neo4j
         image: busybox:1.28
-        command: ['sh', '-c', "until nslookup neo4j.dev; do echo 'waiting for neo4j'; sleep 2; done"]
+        command: ['sh', '-c', "until nslookup neo4j.dev.svc; do echo 'waiting for neo4j'; sleep 2; done"]
 
       containers:
       - name: data-reader
         image: aminehajali/pfe-search-engine-datareader
         env:
         - name: NEO4J_URL
-          value: bolt://neo4j.dev:7687
+          value: bolt://neo4j.dev.svc:7687
         - name: NEO4J_USERNAME
           value: neo4j
         - name: NEO4J_PASSWORD
