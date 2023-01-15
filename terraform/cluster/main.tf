@@ -13,10 +13,9 @@ resource "azurerm_kubernetes_cluster" "example" {
     name                = "default"
     enable_auto_scaling = true
     min_count           = 3
-    max_count           = 5
+    max_count           = 3
     vm_size             = "Standard_D2_v2"
   }
-
   identity {
     type = "SystemAssigned"
   }
@@ -29,9 +28,4 @@ resource "azurerm_kubernetes_cluster" "example" {
   provisioner "local-exec" {
     command = "echo ${self.kube_config_raw} >> ~/.kube/config"
   }
-
-  tags = {
-    Environment = "Development"
-  }
 }
-

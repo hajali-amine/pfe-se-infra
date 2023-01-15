@@ -7,7 +7,8 @@ resource "kubernetes_namespace" "namespace" {
 module "prometheus" {
   source = "./modules/prometheus"
   providers = {
-    helm = helm
+    helm       = helm
+    kubernetes = kubernetes
   }
   namespace = kubernetes_namespace.namespace.id
 }

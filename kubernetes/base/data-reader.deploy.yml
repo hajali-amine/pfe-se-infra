@@ -31,6 +31,8 @@ spec:
           value: neo4j
         - name: NEO4J_PASSWORD
           value: pwd
+        - name: SIGNOZ_BACKEND
+          value: jaeger-k8s-infra-otel-agent.monitoring
         ports:
         - containerPort: 5000
         resources:

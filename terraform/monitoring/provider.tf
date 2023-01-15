@@ -30,7 +30,7 @@ provider "kubernetes" {
 }
 
 provider "helm" {
-    kubernetes {
+  kubernetes {
     host                   = local.host
     username               = local.username
     password               = local.password

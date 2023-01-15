@@ -1,4 +1,4 @@
 variable "namespace" {
-  type = string
+  type        = string
   description = "The namespace of the prometheus helm release"
 }
