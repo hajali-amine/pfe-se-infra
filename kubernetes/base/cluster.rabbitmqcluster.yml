@@ -7,6 +7,13 @@ metadata:
     rabbitmq.com/topology-allowed-namespaces: "*"
 spec:
   replicas: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 10Mi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
   rabbitmq:
       additionalConfig: |
         loopback_users = none

@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front
+  namespace: prod
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: front
+        image: aminehajali/pfe-search-engine-front
+        env:
+        - name: REACT_APP_BACKEND_URL
+          value: http://localhost:5000

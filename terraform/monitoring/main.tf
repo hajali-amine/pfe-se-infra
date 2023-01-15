@@ -1,6 +1,6 @@
 resource "kubernetes_namespace" "namespace" {
   metadata {
-    name = "monitoring"
+    name = "monitoring-v2"
   }
 }
 
@@ -13,8 +13,8 @@ module "prometheus" {
   namespace = kubernetes_namespace.namespace.id
 }
 
-module "jaeger" {
-  source = "./modules/jaeger"
+module "signoz" {
+  source = "./modules/signoz"
   providers = {
     helm = helm
   }

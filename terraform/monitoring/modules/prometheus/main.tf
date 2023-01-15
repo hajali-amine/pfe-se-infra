@@ -60,6 +60,11 @@ resource "kubernetes_deployment" "grafana" {
             mount_path = "/etc/grafana/dashboards/node-exporter/node-exporter.json"
             sub_path   = "node-exporter.json"
           }
+          volume_mount {
+            name       = "config-dashboards"
+            mount_path = "/etc/grafana/dashboards/search-engine/search.json"
+            sub_path   = "search.json"
+          }
         }
         volume {
           name = "config-provisioning"
@@ -116,5 +121,6 @@ resource "kubernetes_config_map" "grafana_dashboard" {
 
   data = {
     "node-exporter.json" = "${file("${path.module}/files/node-exporter.json")}"
+    "search.json" = "${file("${path.module}/files/search.json")}"
   }
 }

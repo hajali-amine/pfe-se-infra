@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-reader
+  namespace: prod
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: data-reader
+        image: aminehajali/pfe-search-engine-datareader
+        env:
+        - name: NEO4J_URL
+          value: bolt://neo4j:7687
+        - name: NEO4J_USERNAME
+          value: neo4j
+        - name: NEO4J_PASSWORD
+          value: pwd
+        - name: SIGNOZ_BACKEND
+          value: jaeger-k8s-infra-otel-agent.monitoring
+        - name: SERVICE_NAME
+          value: data_reader_dev

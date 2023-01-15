@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-loader
+  namespace: prod
+spec:
+  replicas: 1
+  template:
+    spec:
+      initContainers:
+      - name: wait-for-neo4j
+        image: busybox:1.28
+        command: ['sh', '-c', "until nslookup neo4j.dev; do echo 'waiting for neo4j'; sleep 2; done"]
+
+      containers:
+      - name: data-loader
+        image: aminehajali/pfe-search-engine-dataloader
+        env:
+        - name: NEO4J_URL
+          value: bolt://neo4j.dev:7687
+        - name: NEO4J_USERNAME
+          value: neo4j
+        - name: NEO4J_PASSWORD
+          value: pwd
+        - name: RABBITMQ_URL
+          value: amqp://guest:guest@rabbitmq:5672/
+        # ports:
+        # - containerPort: 5000

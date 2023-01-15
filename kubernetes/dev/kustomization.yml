@@ -6,4 +6,11 @@ bases:
   - ../base
 
 patchesStrategicMerge:
-  - patches/manifest.deploy.yaml
+  - patches/cluster.rabbitmqcluster.yml
+  - patches/data-loader.deploy.yml
+  - patches/data-loader.svc.yml
+  - patches/data-reader.deploy.yml
+  - patches/data-reader.svc.yml
+  - patches/front.deploy.yml
+  - patches/front.svc.yml
+  - patches/scrapper.cronjob.yml

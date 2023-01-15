@@ -12,6 +12,9 @@ spec:
       app: data-reader
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "5000"
       labels:
         app: data-reader
     spec:
@@ -33,6 +36,8 @@ spec:
           value: pwd
         - name: SIGNOZ_BACKEND
           value: jaeger-k8s-infra-otel-agent.monitoring
+        - name: SERVICE_NAME
+          value: data_reader
         ports:
         - containerPort: 5000
         resources:
