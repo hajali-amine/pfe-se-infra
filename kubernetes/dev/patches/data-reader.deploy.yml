@@ -10,6 +10,7 @@ spec:
       containers:
       - name: data-reader
         image: aminehajali/pfe-search-engine-datareader
+        imagePullPolicy: Always
         env:
         - name: NEO4J_URL
           value: bolt://neo4j:7687
@@ -18,6 +19,6 @@ spec:
         - name: NEO4J_PASSWORD
           value: pwd
         - name: SIGNOZ_BACKEND
-          value: jaeger-k8s-infra-otel-agent.monitoring
+          value: signoz-k8s-infra-otel-agent.monitoring-v2
         - name: SERVICE_NAME
           value: data_reader_dev

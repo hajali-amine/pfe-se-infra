@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-nginx
+  namespace: prod
+spec:
+  rules:
+  - host: pfesearchengine.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: front
+            port:
+              number: 80  
+  - host: api.pfesearchengine.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: data-reader
+            port:
+              number: 80
+  ingressClassName: nginx

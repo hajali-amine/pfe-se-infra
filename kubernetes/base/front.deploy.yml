@@ -21,7 +21,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: REACT_APP_BACKEND_URL
-          value: http://localhost:5000
+          value: http://api.pfesearchengine.com
         ports:
         - containerPort: 80
         resources:

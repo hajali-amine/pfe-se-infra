@@ -35,7 +35,7 @@ spec:
         - name: NEO4J_PASSWORD
           value: pwd
         - name: SIGNOZ_BACKEND
-          value: jaeger-k8s-infra-otel-agent.monitoring
+          value: signoz-k8s-infra-otel-agent.monitoring-v2
         - name: SERVICE_NAME
           value: data_reader
         ports:

@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-nginx
+  namespace: monitoring-v2
+spec:
+  rules:
+  - host: grafana.pfesearchengine.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 3000  
+  - host: signoz.pfesearchengine.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: signoz-frontend
+            port:
+              number: 3301
+  ingressClassName: nginx
+  
